@@ -43,10 +43,10 @@ async def get_weather_by_city(message: types.Message):
     city_name = message.text.strip().lower()  # Приведение города к нижнему регистру и удаление лишних пробелов
     logger.info(f"Запрос погоды для города: {city_name} от пользователя {message.from_user.id}")
     try:
-        # Установим тайм-аут для запроса в 10 секунд
-        url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={WEATHER_API_KEY}&units=metric&lang=ru'
+        # Установим тайм-аут для запроса в 20 секунд
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={WEATHER_API_KEY}&units=metric"
         logger.info(f"Отправка запроса к OpenWeatherMap для города: {city_name}")
-        response = requests.get(url, timeout=10)  # Тайм-аут 10 секунд
+        response = requests.get(url, timeout=20)  # Увеличиваем тайм-аут до 20 секунд
 
         if response.status_code == 200:
             data = response.json()
